@@ -13,17 +13,33 @@ function App() {
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     console.log(event);
+    console.log(event.currentTarget);
+    console.log(event.target);
   };
 
-  // event にカーソルを充てると 「(parameter) event: React.MouseEvent<HTMLButtonElement, MouseEvent>」と型の情報をしてくれる
+  const handleBtnDivUnionClick = (
+    // ユニオンじゃなくても 親要素の HTMLElement でもよい
+    event: React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>
+  ) => {
+    console.log('union')
+    console.log(event);
+  }
+
   return (
     <div className="App">
       <button onClick={handleClick}>Click</button>
+      {/* event にカーソルを充てると 「(parameter) event: React.MouseEvent<HTMLButtonElement, MouseEvent>」と型の情報をしてくれる */}
       <button onClick={(event)=>{}}>Click</button>
+
       <div onClick={handleDivClick}>Click</div>
       <button onClick={handleClick}>
         <span>Click</span>
       </button>
+
+      {/* ユニオン */}
+      <button onClick={handleBtnDivUnionClick}>Union Click</button>
+      <div onClick={handleBtnDivUnionClick}>Union Click</div>
+      
     </div>
   );
 }
