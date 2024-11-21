@@ -9,11 +9,21 @@ function App() {
     console.log(event);
   };
 
+  const handleDivClick = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    console.log(event);
+  };
+
   // event にカーソルを充てると 「(parameter) event: React.MouseEvent<HTMLButtonElement, MouseEvent>」と型の情報をしてくれる
   return (
     <div className="App">
       <button onClick={handleClick}>Click</button>
       <button onClick={(event)=>{}}>Click</button>
+      <div onClick={handleDivClick}>Click</div>
+      <button onClick={handleClick}>
+        <span>Click</span>
+      </button>
     </div>
   );
 }
